@@ -15,17 +15,17 @@ export class RepositoryService {
     this.pip = new DatePipe('en-US');
   }
 
-
-  private adapteEndPoint(pageIndex: number): string {
+  // configure the URL by adding a page index and the date of a month ago from the current date as query string parameters 
+  private adapteUrl(pageIndex: number): string {
     const currentDate = new Date().setMonth(new Date().getMonth() - 1);
-    let date = this.pip.transform(currentDate, 'yyyy-MM-dd');
-    let url = this.baseGithubEndPoint + '?q=created:>' + date + '&sort=stars&order=desc&page=' + pageIndex;
-    console.log(url) ;
+    const dateOfMonthAgo = this.pip.transform(currentDate, 'yyyy-MM-dd');
+    const url = this.baseGithubEndPoint + '?q=created:>' + dateOfMonthAgo + '&sort=stars&order=desc&page=' + pageIndex;
     return url;
   }
 
+  // send an HTTP GET methode to the api end-point using the configured url from the adapteUrl methode
   public getRepositories(pageIndex: number): Observable<any> {
-    let url = this.adapteEndPoint(pageIndex);
+    let url = this.adapteUrl(pageIndex);
     return this.http.get(url);
   }
 
