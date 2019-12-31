@@ -8,24 +8,26 @@ import { DatePipe } from '@angular/common'
 })
 export class RepositoryService {
 
-  private pip = new DatePipe('en-US');
+  private pip: DatePipe;
   private baseGithubEndPoint = 'https://api.github.com/search/repositories';
 
   constructor(private http: HttpClient) {
     this.pip = new DatePipe('en-US');
   }
 
-  // configure the URL by adding a page index and the date of a month ago from the current date as query string parameters 
+  // configure the URL by adding a page index and the date of 30 days ago from the current date as query string parameters 
   private adapteUrl(pageIndex: number): string {
-    const currentDate = new Date().setMonth(new Date().getMonth() - 1);
-    const dateOfMonthAgo = this.pip.transform(currentDate, 'yyyy-MM-dd');
-    const url = this.baseGithubEndPoint + '?q=created:>' + dateOfMonthAgo + '&sort=stars&order=desc&page=' + pageIndex;
+
+    const todayDate = new Date();
+    const dateOfMonthAgo = todayDate.setTime(todayDate.getTime() - 30 * 24 * 60 * 60 * 1000);
+    const dateOfMonthAgoFormatted = this.pip.transform(dateOfMonthAgo, 'yyyy-MM-dd');
+    const url = this.baseGithubEndPoint + '?q=created:>' + dateOfMonthAgoFormatted + '&sort=stars&order=desc&page=' + pageIndex;
     return url;
   }
 
   // send an HTTP GET methode to the api end-point using the configured url from the adapteUrl methode
   public getRepositories(pageIndex: number): Observable<any> {
-    let url = this.adapteUrl(pageIndex);
+    const url = this.adapteUrl(pageIndex);
     return this.http.get(url);
   }
 
