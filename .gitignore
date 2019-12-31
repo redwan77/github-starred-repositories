@@ -1,7 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 /node_modules
 /src/app/app-routing 
-/src/app/pipes
+#/src/app/pipes
 /src/app/repositories-container
 /src/app/repository
 #/src/services
