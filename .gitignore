@@ -5,7 +5,7 @@
 /src/app/repositories-container
 /src/app/repository
 #/src/services
-/src/models
+#/src/models
 # compiled output
 /dist
 /tmp
