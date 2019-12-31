@@ -1,0 +1,14 @@
+.container-fluid {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.loading-repos {
+  color: rgb(203, 0, 226);
+  text-align: center;
+  margin-bottom: 50px;
+}
+.loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}

@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div *ngIf="repositories.length != 0; else Loading">
+    <div *ngFor="let repo of repositories">
+      <app-repository [repository]="repo"></app-repository>
+    </div>
+  </div>
+  <div *ngIf="isScrolling">
+    <h1  class="loading-repos">Loading more repositories ...</h1>
+  </div>
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="1000"
+    (scrolled)="onScroll()"
+  ></div>
+  <ng-template #Loading ><h1 class="loading-repos loading">Loading...</h1></ng-template>
+</div>

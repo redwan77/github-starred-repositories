@@ -1,0 +1,12 @@
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+.card {
+  width: 100%;
+}
+.badge {
+  background-color: #c70385;
+  width: 150px;
+  min-width: 100px;
+}
