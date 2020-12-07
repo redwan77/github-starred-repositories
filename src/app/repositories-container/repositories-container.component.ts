@@ -22,9 +22,9 @@ export class RepositoriesContainerComponent implements OnInit {
     this.loadRepositories(this.pageIndex);
   }
 
-  // the methode to invoke when the user reaches the buttom of the page 
-  // increment the pageIndex and loadRepositories based on the new pageIndex 
-  // set the boolean isScrolling to true to show the "Loading more repositories ..." label 
+  // the methode to invoke when the user si at the buttom of the page. 
+  // increment the pageIndex and loadRepositories based on the new Index .
+  // set the boolean isScrolling to true to show the "Loading more repositories ..." label. 
   public onScroll(): void {
     this.isScrolling = true;
     this.pageIndex++;
